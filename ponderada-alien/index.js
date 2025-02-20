@@ -22,7 +22,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 200 },
-            debug: true
+            debug: false
         }
     },
 
@@ -254,7 +254,7 @@ function update() {
     }
 
     // Caso o ufo bata na esquerda da tela o jogo acaba
-    if (ufo.x == 40) {
+    if (ufo.x == 33.75) {
         gameEnd = true;
 
         // aparecer gameover escrito na tela e parar o jogo todo
