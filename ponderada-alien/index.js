@@ -9,6 +9,8 @@ let keyboard;
 let obstacles = []
 let lastTimeSpawned;
 let gameEnd = false;
+let score = 0;
+let scoreTextOnScreen;
 
 // Configurações do jogo
 const config = {
@@ -20,7 +22,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 200 },
-            debug: false
+            debug: true
         }
     },
 
@@ -57,7 +59,7 @@ function create() {
     keyboard = this.input.keyboard.createCursorKeys();
 
     ufo = this.physics.add.sprite(width / 2, 0, 'ufo').setScale(0.25).setDepth(1);
-    ufo.body.setSize(320, 320, true);
+    ufo.body.setSize(270, 270, true);
     ufo.setCollideWorldBounds(true);
 
     this.background = this.add.tileSprite(0,
@@ -105,6 +107,8 @@ function create() {
     turbo = this.add.sprite(0, 0, 'turbo').setScale(0.1);
     turbo.setVisible(false);
 
+    scoreTextOnScreen = this.add.text(16, 16, 'Moedas: ' + score, { fontSize: '32px', fill: '#fff' }).setDepth(2);
+
     // Aguardar interacao de reiniciar o jogo
     this.input.on('pointerdown', () => {
         if (!gameEnd) return;
@@ -113,6 +117,7 @@ function create() {
         this.physics.resume();
         ufo.clearTint();
         lastTimeSpawned = 0;
+        score = 0;
         obstacles = []
         coins = []
         gameEnd = false
@@ -137,6 +142,15 @@ function update() {
                 // Remover o turbo depois de 5 segundos
                 turbo.setVisible(false);
             }, 5000);
+
+            // Adicionar o score ao pegar a moeda
+            score += 1;
+
+            if (scoreTextOnScreen) {
+                scoreTextOnScreen.setText('Moedas: ' + score);
+            } else {
+                scoreTextOnScreen = this.add.text(16, 16, 'Moedas: ' + score, { fontSize: '32px', fill: '#fff' }).setDepth(2);
+            }
         });
 
         // Desativar a gravidade do obstáculo
