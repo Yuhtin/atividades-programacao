@@ -112,16 +112,18 @@ function create() {
         this.scene.restart();
         this.physics.resume();
         ufo.clearTint();
-        gameOver.destroy();
         lastTimeSpawned = 0;
         obstacles = []
+        coins = []
         gameEnd = false
     });
 }
 
 // Função para atualizar as coisas na tela (60 vezes por segundo se tiver 60 FPS)
 function update() {
+    console.log('update');
     if (coins.length < 1) {
+        console.log('coin');
         let randomY = Phaser.Math.Between(0, height); // Gera um número aleatório entre 0 e a altura da tela
         let coin = this.physics.add.sprite(width, randomY, 'coin').setScale(0.25).setDepth(1); // Cria um obstáculo
 
@@ -153,6 +155,8 @@ function update() {
         if (this.time.now - lastTimeSpawned < 1000) { // Não deixa criar obstáculos muito rápido
             return;
         }
+
+        console.log('obstacle');
 
         let randomY = Phaser.Math.Between(0, height); // Gera um número aleatório entre 0 e a altura da tela
         let obstacle = this.physics.add.sprite(width, randomY, 'bomb').setScale(0.25).setDepth(1); // Cria um obstáculo
