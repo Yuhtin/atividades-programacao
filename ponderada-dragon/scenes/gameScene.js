@@ -68,14 +68,7 @@ export class GameScene extends Phaser.Scene {
         // Se o número de obstáculos for menor que 3 e o tempo desde o último obstáculo criado for maior que o intervalo de tempo
         // Então, cria um novo obstáculo
         if (this.obstacles.length < 3 && (this.time.now - (this.lastObstacleSpawnTime || 0)) > obstacleInterval) {
-            const obstacle = this.physics.add.sprite(1900, Math.random() * 1000, 'bomb').setScale(1).setDepth(3);
-            this.obstacles.push(obstacle);
-            this.lastObstacleSpawnTime = this.time.now;
-
-            this.physics.add.overlap(this.spaceShip, obstacle, () => {
-                // Caso a nave colida com um obstáculo, encerra o jogo, e exibe a tela de game over passando o tempo vivo
-                this.scene.start('game-over-scene', { secondsAlive: Math.floor((this.time.now - this.startTime) / 1000) });
-            });
+            this.generateNewObstacle();
         }
 
         this.obstacles.forEach((obstacle, index) => {
@@ -90,20 +83,7 @@ export class GameScene extends Phaser.Scene {
         // Atualiza o tempo vivo do jogador
         this.timeText.setText('Tempo Vivo: ' + Math.floor((this.time.now - this.startTime) / 1000) + 's');
 
-        // Se o boost estiver ativo e o tempo de duração do boost já passou, desativa o boost
-        if (this.boostActive && (this.time.now - this.lastBoostTime) > this.boostTime) {
-            this.boostActive = false;
-            this.boost.visible = false;
-            this.spaceShip.setVelocityX(0);
-            this.spaceShip.setVelocityY(0);
-        }
-
-        // Se o boost não estiver ativo e o tempo de intervalo entre os boosts já passou, ativa o boost
-        if (!this.boostActive && (this.time.now - this.lastBoostTime) > this.intervalBetweenBoosts) {
-            this.boostActive = true;
-            this.boost.visible = true;
-            this.lastBoostTime = this.time.now;
-        }
+        this.verifyBoost();
 
         // Movimentação do cenário
         this.background.tilePositionX += .3;
@@ -113,6 +93,29 @@ export class GameScene extends Phaser.Scene {
             image.tilePositionX += 5 * (index + 1); // Aumenta a velocidade de acordo com o índice
         });
 
+        this.runSpaceshipMovement();
+
+        if (this.boostActive) {
+            this.boost.x = this.spaceShip.x - 157;
+            this.boost.y = this.spaceShip.y;
+        }
+    }
+
+    // Função para gerar um novo obstáculo
+    generateNewObstacle() {
+        const obstacle = this.physics.add.sprite(1900, Math.random() * 1000, 'bomb').setScale(1).setDepth(3);
+
+        this.obstacles.push(obstacle);
+        this.lastObstacleSpawnTime = this.time.now;
+
+        this.physics.add.overlap(this.spaceShip, obstacle, () => {
+            // Caso a nave colida com um obstáculo, encerra o jogo, e exibe a tela de game over passando o tempo vivo
+            this.scene.start('game-over-scene', { secondsAlive: Math.floor((this.time.now - this.startTime) / 1000) });
+        });
+    }
+
+    // Função para movimentar a nave
+    runSpaceshipMovement() {
         // Processamento de movimentação da nave
         if (this.cursors.left.isDown) {
             this.spaceShip.setVelocityX(-200); // Movimenta a nave para a esquerda
@@ -131,11 +134,23 @@ export class GameScene extends Phaser.Scene {
         } else {
             this.spaceShip.setVelocityY(0); // Para a nave no eixo Y
         }
-
-        if (this.boostActive) {
-            this.boost.x = this.spaceShip.x - 157;
-            this.boost.y = this.spaceShip.y;
-        }
     }
 
+    // Função para verificar se o boost está ativo
+    verifyBoost() {
+        // Se o boost estiver ativo e o tempo de duração do boost já passou, desativa o boost
+        if (this.boostActive && (this.time.now - this.lastBoostTime) > this.boostTime) {
+            this.boostActive = false;
+            this.boost.visible = false;
+            this.spaceShip.setVelocityX(0);
+            this.spaceShip.setVelocityY(0);
+        }
+
+        // Se o boost não estiver ativo e o tempo de intervalo entre os boosts já passou, ativa o boost
+        if (!this.boostActive && (this.time.now - this.lastBoostTime) > this.intervalBetweenBoosts) {
+            this.boostActive = true;
+            this.boost.visible = true;
+            this.lastBoostTime = this.time.now;
+        }
+    }
 }
