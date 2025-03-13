@@ -14,7 +14,7 @@ Deve-se substituir por if (a === 0 || b === 0).
 
 (i) O objetivo da condicional dentro da função soma é garantir que nenhum dos valores inseridos seja 0, retornando `"Erro: número inválido"` caso isso ocorra. Porém, a forma como a lógica foi estruturada apresenta um problema de prioridade na avaliação. O termo `b === 0` é processado primeiro, seguido do operador ||. Assim, em um caso como (0,3), o valor 3 será avaliado antes, tornando a condição falsa e impedindo a execução do bloco de erro.
 
-## 3- (A)
+## 3- (B)
 
 O código exibirá 200 no console.
 
