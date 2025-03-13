@@ -70,17 +70,17 @@ Ambas as chamadas utilizam a segunda versão do método, provando que não há s
 ## 9- Código consertado com comentários
 
 ```javascript
-function sum(numeros) {
+function sum(numbers) {
     // Inicializa a variável acumuladora
-    let soma = 0;
+    let total = 0;
 
     // Corrige "size" para "length" e declara "i" com let
-    for (let i = 0; i < numeros.length; i++) { 
+    for (let i = 0; i < numbers.length; i++) { 
         // Ajuste no operador de atribuição: antes, o "=" sobrescrevia a variável soma a cada iteração. Agora, com "+=", os valores são acumulados corretamente.
-        soma += 2 * numeros[i];
+        total += 2 * numbers[i];
     }
 
-    return soma; // Retorna a soma acumulada
+    return total; // Retorna a soma acumulada
 }
 
 console.log(sum([2, 4, 6, 8])); // Resultado esperado: 4+8+12+16 = 40
@@ -111,13 +111,13 @@ class Phone extends Product {
 
   // Sobresceve o método para um desconto de 5%
   calculateDiscount() {
-    return this.preco * .95;
+    return this.price * .95;
   }
 }
 
 // Criando instâncias para teste
 const product1 = new Product("Caixa Vazia", 100);
-console.log(`Preço com desconto (Produto): R$ ${produto1.calculateDiscount()}`);
+console.log(`Preço com desconto (Produto): R$ ${product1.calculateDiscount()}`);
 // Output que deve aparecer: "Preço com desconto (Produto): R$ 80"
 
 const phone1 = new Phone("Iphone", 15000, "15 PRO Max");
