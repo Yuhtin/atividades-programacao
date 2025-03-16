@@ -316,38 +316,38 @@ console.log(sum([2, 4, 6, 8])); // Resultado esperado: 4+8+12+16 = 40
 Explique como funciona a herança nesse contexto e como você implementaria a modificação do método na classe `Livro`.
 
 ```javascript
-// Classe base Product
-class Product {
-  constructor(name, price) {
-    this.name = name;
-    this.price = price;
+// Classe base Produto
+class Produto {
+  constructor(nome, preco) {
+    this.nome = nome;
+    this.preco = preco;
   }
 
-  // Método para aplicar um desconto de 20%
+  // Método para aplicar um desconto de 10%
   calculateDiscount() {
-    return this.price * .8;
+    return this.preco * .9;
   }
 }
 
-// Classe Phone que estende Product
-class Phone extends Product {
-  constructor(name, price, model) {
-    super(name, price); // Chama o construtor da classe mãe Product
-    this.model = model;
+// Classe Livro que estende Produto
+class Livro extends Produto {
+  constructor(nome, preco, autor) {
+    super(nome, preco); // Chama o construtor da classe mãe Produto
+    this.autor = autor;
   }
 
-  // Sobresceve o método para um desconto de 5%
+  // Sobresceve o método para um desconto de 20%
   calculateDiscount() {
-    return this.price * .95;
+    return this.preco * .8;
   }
 }
 
 // Criando instâncias para teste
-const product1 = new Product("Caixa Vazia", 100);
+const product1 = new Produto("Caixa Vazia", 100);
 console.log(`Preço com desconto (Produto): R$ ${product1.calculateDiscount()}`);
-// Output que deve aparecer: "Preço com desconto (Produto): R$ 80"
+// Output que deve aparecer: "Preço com desconto (Produto): R$ 90"
 
-const phone1 = new Phone("Iphone", 15000, "15 PRO Max");
-console.log(`Preço com desconto (Iphone): R$ ${phone1.calculateDiscount()}`);
-// Output que deve aparecer: "Preço com desconto (Iphone): R$ 14250"
+const book1 = new Livro("Memórias Póstumas", 40, "Brás Cubas");
+console.log(`Preço com desconto (Livro): R$ ${book1.calculateDiscount()}`);
+// Output que deve aparecer: "Preço com desconto (Livro): R$ 32"
 ```
