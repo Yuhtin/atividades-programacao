@@ -7,13 +7,12 @@ const config = {
     type: Phaser.AUTO,
 
     scale: {
-        mode: Phaser.Scale.FIT
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
     },
-
-    autoCenter: Phaser.Scale.CENTER,
-
-    width: 1900, // largura da tela do jogo
-    height: 1000, // altura da tela do jogo
+    
+    width: 1920, // largura da tela do jogo
+    height: 1080, // altura da tela do jogo
 
     physics: {
         default: 'arcade',
@@ -31,4 +30,4 @@ const config = {
     scene: [PreloadScene, StartMenu, GameScene, GameOverScene]
 };
 
-export default new Phaser.Game(config);
+export const game = new Phaser.Game(config);

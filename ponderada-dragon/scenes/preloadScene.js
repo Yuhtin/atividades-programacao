@@ -35,6 +35,11 @@ export class PreloadScene extends Phaser.Scene {
             `assets/spaceship.png`,
             { frameWidth: 350, frameHeight: 150 }
         );
+        this.load.spritesheet(
+            "spaceship_2",
+            `assets/spaceship_2.png`,
+            { frameWidth: 158, frameHeight: 86 }
+        );
     }
 
     create() {

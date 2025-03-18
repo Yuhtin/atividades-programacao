@@ -29,11 +29,12 @@ export class GameScene extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        this.spaceShip = this.physics.add.sprite(width / 2, 0, 'spaceship').setScale(1).setDepth(3);
+        this.spaceshipName = this.sys.game.device.os.desktop ? 'spaceship' : 'spaceship_2';
+        this.spaceShip = this.physics.add.sprite(width / 2, 0, this.spaceshipName).setScale(1).setDepth(3);
 
         this.anims.create({
             key: "spaceship-animation",
-            frames: this.anims.generateFrameNumbers("spaceship", { start: 0, end: 6 }), // Frames 0 a 5 são da animação de idle
+            frames: this.anims.generateFrameNumbers(this.spaceshipName, { start: 0, end: 6 }), // Frames 0 a 5 são da animação de idle
             frameRate: 10,
             repeat: -1 // Repetir infinitamente
         });
@@ -96,7 +97,7 @@ export class GameScene extends Phaser.Scene {
         this.runSpaceshipMovement();
 
         if (this.boostActive) {
-            this.boost.x = this.spaceShip.x - 157;
+            this.boost.x = this.spaceShip.x - (this.sys.game.device.os.desktop ? 157 : 100);
             this.boost.y = this.spaceShip.y;
         }
     }
