@@ -104,19 +104,19 @@ function analisarCredito2() {
 }
 ```
 Se ambas as funções forem executadas com os valores fornecidos, qual será a saída exibida no console?
-### Resposta: Nenhuma das alternativas
+### Resposta: A
 
-A) Ambas as funções exibirão: 'Seu crédito foi negado. Saldo disponível: -600.'
+**A) Ambas as funções exibirão: 'Seu crédito foi aprovado. Saldo disponível: 400.'**
 
 B) analisarCredito1() exibirá: 'Seu crédito foi negado. Saldo disponível: -600.', enquanto analisarCredito2() exibirá: 'Seu crédito foi negado. Saldo disponível: -200.'
 
-C) analisarCredito1() exibirá: 'Seu crédito foi negado. Saldo disponível: -200.', enquanto analisarCredito2() exibirá: 'Seu crédito foi negado. Saldo disponível: -600.'
+C) analisarCredito1() exibirá: 'Seu crédito foi negado. Saldo disponível: -200.', enquanto analisarCredito2() exibirá: 'Seu crédito foi aprovado. Saldo disponível: 100.'
 
-D) Ambas as funções exibirão: 'Seu crédito foi negado. Saldo disponível: -200.'
+D) Ambas as funções exibirão: 'Seu crédito foi aprovado Saldo disponível: 500.'
 
 ___
 
-### Resposta: Nenhuma das alternativas
+### Resposta: A
 
 Em meus testes, nenhuma das alternativas está correta, as duas funções retornaram "Seu crédito foi aprovado. Saldo disponível: 400."
 ______
@@ -135,17 +135,17 @@ if (idade >= 18 && idade < 60) {
 }
 ```
 Qual das seguintes alternativas melhor descreve o comportamento do código?
-### Resposta: Letra A
+### Resposta: Letra B
 
-**A) O código verifica se a idade indica um adulto ou um idoso e exibe a mensagem correspondente.**
+A) O código verifica se a idade indica um adulto ou um idoso e exibe a mensagem correspondente.
 
-B) O código verifica se a idade pertence à faixa adulta. Se for, exibe "Você é um adulto!". Caso contrário, verifica se é menor de idade e exibe "Você é menor de idade!". Se nenhuma das condições anteriores for verdadeira, exibe "Você está na melhor idade!".
+**B) O código verifica se a idade pertence à faixa adulta. Se for, exibe "Você é um adulto!". Caso contrário, verifica se é menor de idade e exibe "Você é menor de idade!". Se nenhuma das condições anteriores for verdadeira, exibe "Você está na melhor idade!".**
 
 C) O código verifica se a idade está entre 18 e 60 anos e, se for, imprime "Você é um adulto!". Se não estiver nesse intervalo, imprime "Você está na melhor idade!".
 
 D) O código verifica se a idade é menor de 18, entre 18 e 60 ou acima de 60, imprimindo uma mensagem específica para cada caso.
 
-### Resposta: Letra A
+### Resposta: Letra B
 ______
 
 **4)** Qual será o resultado impresso no console após a execução do seguinte código?
