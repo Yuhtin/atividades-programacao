@@ -114,11 +114,6 @@ C) analisarCredito1() exibirá: 'Seu crédito foi negado. Saldo disponível: -20
 
 D) Ambas as funções exibirão: 'Seu crédito foi aprovado Saldo disponível: 500.'
 
-___
-
-### Resposta: A
-
-Em meus testes, nenhuma das alternativas está correta, as duas funções retornaram "Seu crédito foi aprovado. Saldo disponível: 400."
 ______
 
 **3)** Considere o seguinte trecho de código em JavaScript:
